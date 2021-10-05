@@ -2,67 +2,134 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
-    Layout = "/Areas/Identity/Pages/_BankLayout.cshtml";
-}
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
+<head>
+    <meta charset="utf-8" />
+    <title>Create a New Account</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/js/site.js" rel="javascript" type="text/javascript" />
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #fff;
             }
-        </section>
-    </div>
-</div>
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Add padding to containers */
+            .container {
+                padding: 16px;
+                background-color: white;
+                align-items: center;
+            }
+
+            /* Full-width input fields */
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+
+                input[type=text]:focus, input[type=password]:focus {
+                    background-color: #ddd;
+                    outline: none;
+                }
+
+            /* Overwrite default styles of hr */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
+
+            input[type="radio"] {
+                width: 16px;
+                height: 16px;
+                border: 2px solid #555555;
+                border-radius: 50%;
+                background-clip: content-box;
+                padding: 3px;
+            }
+
+                input[type="radio"]:checked {
+                    background-color: #555555;
+                }
+
+            /* Set a style for the submit button */
+            .registerbtn {
+                background-color: #04AA6D;
+                color: white;
+                padding: 16px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;
+            }
+
+                .registerbtn:hover {
+                    opacity: 1;
+                }
+
+            /* Add a blue text color to links */
+            a {
+                color: dodgerblue;
+            }
+
+            /* Set a grey background color and center the text of the "sign in" section */
+            .signin {
+                background-color: #f1f1f1;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+   <body>
+
+        <form action="#">
+            <div class="container">
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+
+                <label for="first_name"><b>First Name</b></label>
+                <input type="text" placeholder="Enter your First Name" name="first_name" id="first_name" required>
+
+                <label for="last_name"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter your Last Name" name="last_name" id="last_name" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                <hr>
+
+                <label for="gender"><b>Gender</b></label><br />
+                <input type="radio" name="gender" value="M" />Male
+                <input type="radio" name="gender" value="F" />Female
+
+                <button type="submit" class="registerbtn">Register</button>
+            </div>
+
+            <div class="container signin">
+                <p>Already have an account? <a asp-area="Identity" asp-page="/Account/Login">Sign in</a>.</p>
+            </div>
+        </form>
+
+    </body>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

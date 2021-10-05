@@ -5,15 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210916163017_BankApplicationDB_01.cs" />
-    <Compile Remove="Migrations\20210916163017_BankApplicationDB_01.Designer.cs" />
-    <Compile Remove="Migrations\20210916164435_BankApplicationDB_01.cs" />
-    <Compile Remove="Migrations\20210916164435_BankApplicationDB_01.Designer.cs" />
-    <Compile Remove="Migrations\20210916193052_InitialCreate.cs" />
-    <Compile Remove="Migrations\20210916193052_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />

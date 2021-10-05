@@ -20,7 +20,8 @@ namespace BankApplication.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("BankDbContextConnection")));
 
-                services.AddDefaultIdentity<BankApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<BankApplicationUser>(
+                    options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<BankDbContext>();
             });
         }

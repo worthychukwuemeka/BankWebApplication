@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankApplication.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    [Migration("20210916194653_BankApplicationDB")]
-    partial class BankApplicationDB
+    [Migration("20210917014449_BankDbContextConnection")]
+    partial class BankDbContextConnection
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
